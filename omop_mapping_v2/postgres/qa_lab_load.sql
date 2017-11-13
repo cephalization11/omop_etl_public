@@ -182,15 +182,15 @@ $$
         get diagnostics rowcnt = ROW_COUNT;
         perform etl.logm('qa_lab_load', 'update from rx: ' , rowcnt );  
         perform etl.logm('qa_lab_load', 'update from rx' , 'FINISH' );  
-
+----Loaded = 3 means all good (ping Richard Starr for quality)
         select 'Loadid: '||v_loadid||', loaded = 3:' || count(*) into logmsg from etl.stage_lab_temp
         where loaded = 3 and load_id = v_loadid;
             perform etl.logm('qa_lab_load', 'QA check count: ' , logmsg );
-
+---Loaded = 2
         select 'Loadid: '||v_loadid||', loaded = 2:' || count(*) into logmsg from etl.stage_lab_temp
         where loaded = 2 and load_id = v_loadid;
             perform etl.logm('qa_lab_load', 'QA check count: ' , logmsg );
-
+---Loaded = 1 
         select 'Loadid: '||v_loadid||', loaded = 1:' || count(*) into logmsg from etl.stage_lab_temp
         where loaded = 1 and load_id = v_loadid;
             perform etl.logm('qa_lab_load', 'QA check count: ' , logmsg );
